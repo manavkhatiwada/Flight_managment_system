@@ -200,8 +200,7 @@ public class MainWindow extends JFrame implements ActionListener {
         }
         try {
             int flightId = Integer.parseInt(flightIdStr);
-            Flight flight = fbs.getFlightByID(flightId);
-            fbs.getFlights().remove(flight);
+            fbs.removeFlight(flightId);
             JOptionPane.showMessageDialog(this, "Flight deleted successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
             displayFlights();
         } catch (Exception ex) {
@@ -216,8 +215,9 @@ public class MainWindow extends JFrame implements ActionListener {
         }
         try {
             int customerId = Integer.parseInt(customerIdStr);
-            fbs.getCustomers().remove((Integer) customerId);
+            fbs.removeCustomer(customerId);
             JOptionPane.showMessageDialog(this, "Customer deleted successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            // Optionally refresh customer view
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }

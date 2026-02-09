@@ -96,4 +96,18 @@ public class FlightBookingSystem {
         }
         throw new FlightBookingSystemException("No booking found for this customer and flight.");
     }
+
+    public void removeFlight(int flightId) throws FlightBookingSystemException {
+        Flight flight = getFlightByID(flightId);
+        // Remove all bookings associated with this flight
+        bookings.removeIf(b -> b.getFlight().getId() == flightId);
+        flights.remove(flightId);
+    }
+
+    public void removeCustomer(int customerId) throws FlightBookingSystemException {
+        Customer customer = getCustomerByID(customerId);
+        // Remove all bookings associated with this customer
+        bookings.removeIf(b -> b.getCustomer().getId() == customerId);
+        customers.remove(customerId);
+    }
 }
